@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Edge Background Context Search",
+  "version": "1.0.0",
+  "description": "Open a background search tab for the current selection via Ctrl+Shift+S or a small in-page 'Search' pill.",
+  "permissions": [
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "search-selection": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S"
+      },
+      "description": "Search for selected text in a background tab"
+    }
+  },
+  "action": {
+    "default_title": "Edge Background Context Search"
+  }
+}
