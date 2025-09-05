@@ -1,0 +1,11 @@
+# Changelog
+
+## v1.1.0
+- Added Options page to select search engine (Bing, Google, DuckDuckGo, or custom).
+- Added right-click (context menu) item: "Search background for …" on selected text.
+- Background service worker now reads engine settings from chrome.storage.sync.
+
+## v1.0.0
+- Initial release with:
+  - Keyboard shortcut (Ctrl+Shift+S) to search selected text in background tab.
+  - Floating "Search" pill when selecting text on a page.
