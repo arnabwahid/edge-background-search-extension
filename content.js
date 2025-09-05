@@ -1,10 +1,5 @@
 // content.js
-
-// Lightweight "Search" pill UI near the current selection.
-// On click (or on Ctrl+Shift+S command routed from background), we request a background tab.
-
 let pill = null;
-let pillShownFor = ""; // track last selection text shown to avoid flicker
 
 document.addEventListener('selectionchange', () => {
   const sel = document.getSelection();
@@ -16,7 +11,6 @@ document.addEventListener('selectionchange', () => {
   const range = sel.getRangeAt(0);
   const rect = range.getBoundingClientRect();
   if (!rect || (rect.width === 0 && rect.height === 0)) {
-    // selection might be within a hidden element; hide
     hidePill();
     return;
   }
@@ -47,7 +41,6 @@ function showPill(rect, txt) {
     });
     document.body.appendChild(pill);
   }
-  pillShownFor = txt;
   const left = Math.min(rect.right + 8, window.innerWidth - 80);
   const top  = Math.max(rect.top - 8, 8);
   pill.style.left = `${left}px`;
@@ -57,14 +50,12 @@ function showPill(rect, txt) {
 
 function hidePill() {
   if (pill) pill.style.display = 'none';
-  pillShownFor = "";
 }
 
 function openBackgroundSearch(query) {
   chrome.runtime.sendMessage({ type: "OPEN_SEARCH_FOR_QUERY", query });
 }
 
-// Receive command from background to perform search on the current selection
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg && msg.type === "DO_SEARCH_SHORTCUT") {
     const q = (document.getSelection()?.toString() || '').trim();
@@ -75,7 +66,6 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   return false;
 });
 
-// Optional: handle ESC to hide the pill quickly
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') hidePill();
 }, true);

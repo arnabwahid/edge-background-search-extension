@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edge Background Context Search — Options</title>
+    <style>
+      body { font: 14px system-ui, -apple-system, Segoe UI, Roboto, sans-serif; padding: 16px; max-width: 720px; }
+      .row { margin: 12px 0; }
+      label { display:block; margin-bottom: 6px; font-weight: 600; }
+      input[type="text"], select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 8px; }
+      .hint { color: #555; font-size: 12px; }
+      .save { margin-top: 16px; padding: 8px 12px; border-radius: 8px; border: 1px solid #ccc; background: #fafafa; cursor: pointer; }
+      .ok { color: #0a0; margin-left: 8px; }
+    </style>
+  </head>
+  <body>
+    <h1>Edge Background Context Search — Options</h1>
+    <div class="row">
+      <label for="engine">Search engine</label>
+      <select id="engine">
+        <option value="bing">Bing</option>
+        <option value="google">Google</option>
+        <option value="ddg">DuckDuckGo</option>
+        <option value="custom">Custom…</option>
+      </select>
+      <div class="hint">Choose your default engine for background searches.</div>
+    </div>
+
+    <div class="row" id="customRow" style="display:none;">
+      <label for="customBase">Custom search base URL</label>
+      <input id="customBase" type="text" placeholder="https://example.com/search?q=">
+      <div class="hint">Must include the query parameter and end with '='. Example: <code>https://www.google.com/search?q=</code></div>
+    </div>
+
+    <button class="save" id="saveBtn">Save</button><span id="status"></span>
+
+    <script src="options.js"></script>
+  </body>
+</html>

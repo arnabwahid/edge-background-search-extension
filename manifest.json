@@ -1,11 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Edge Background Context Search",
-  "version": "1.0.0",
-  "description": "Open a background search tab for the current selection via Ctrl+Shift+S or a small in-page 'Search' pill.",
+  "version": "1.1.0",
+  "description": "Open selected-text searches in a background tab via Ctrl+Shift+S, a floating pill, or the right-click menu. Configurable search engine.",
   "permissions": [
     "tabs",
-    "scripting"
+    "scripting",
+    "storage",
+    "contextMenus"
   ],
   "host_permissions": [
     "<all_urls>"
@@ -35,5 +37,6 @@
   },
   "action": {
     "default_title": "Edge Background Context Search"
-  }
+  },
+  "options_page": "options.html"
 }
